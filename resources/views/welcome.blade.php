@@ -8,34 +8,29 @@
   </head>
   <body>
     <div class="container">
-    <h1>Estudiantes</h1>
+    <h1 class="text-center">Estudiantes</h1>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Documento</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>John</td>
-              <td>Doe</td>
-              <td>@social</td>
+            <form action="{{route('students.index')}}" method="get">
+            @foreach($students as $student)
+            @csrf
+              <td>{{$student->id}}</td>
+              <td>{{$student->name}}</td>
+              <td>{{$student->document}}</td>
+              <td>{{$student->email}}</td>
+            @endforeach
+            </form>
+                <td><button type="button" class="btn btn-">Ingresar</button></td>
             </tr>
         </tbody>
     </table>
