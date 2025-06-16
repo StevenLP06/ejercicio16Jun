@@ -20,17 +20,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <form action="{{route('students.index')}}" method="get">
             @foreach($students as $student)
             @csrf
+            <tr>
+            <form action="{{route('students.index')}}" method="get">
               <td>{{$student->id}}</td>
               <td>{{$student->name}}</td>
               <td>{{$student->document}}</td>
               <td>{{$student->email}}</td>
-            @endforeach
             </form>
-                <td><button type="button" class="btn btn-">Ingresar</button></td>
+                <td>
+                    <a href="" class="btn btn-primary">Editar</a>
+                    <form action="{{route('students.destroy',$student->id)}}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            @endforeach
             </tr>
         </tbody>
     </table>
