@@ -20,20 +20,40 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <form action="{{route('students.index')}}" method="get">
             @foreach($students as $student)
             @csrf
+            <tr>
+            <form action="{{route('students.index')}}" method="get">
               <td>{{$student->id}}</td>
               <td>{{$student->name}}</td>
               <td>{{$student->document}}</td>
               <td>{{$student->email}}</td>
-            @endforeach
             </form>
-                <td><button type="button" class="btn btn-">Ingresar</button></td>
+                <td>
+                    <a href="" class="btn btn-primary">Editar</a>
+                    <form action="{{route('students.destroy',$student->id)}}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            @endforeach
             </tr>
         </tbody>
     </table>
+    <form action="{{route('students.store')}}" method="post">
+      @csrf
+      <label for="name" class="form-label">Nombre: 
+        <input type="text" class="form-control" name="nombre" id="name">
+      </label>
+      <label for="document" class="form-label">Documento
+        <input type="number" class="form-control" name="documento" id="document">
+      </label>
+      <label for="email" class="form-label">Correo Electrónico
+        <input type="email" class="form-control" name="correo" id="email">
+      </label>
+      <button type="submit" class="btn btn-success">Insertar</button>
+    </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
   </body>
