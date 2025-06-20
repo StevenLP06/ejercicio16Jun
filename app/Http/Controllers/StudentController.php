@@ -47,12 +47,18 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        return view('edit')->with('student',$student);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $student = Student::find($id);
+        $student->name = $request->nombre;
+        $student->document = $request->documento;
+        $student->email = $request->correo;
+        $student->save();
+        return redirect()->route('students.index');
     }
 
     public function destroy($id)

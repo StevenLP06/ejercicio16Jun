@@ -8,30 +8,25 @@
   </head>
   <body>
     <div class="container">
-    <h1 class="text-center">Estudiantes</h1>
+    <h1 class="text-center">Asignaturas</h1>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Documento</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($students as $student)
+            @foreach($asignatures as $asignature)
             @csrf
             <tr>
-            <form action="{{route('students.index')}}" method="get">
-              <td>{{$student->id}}</td>
-              <td>{{$student->name}}</td>
-              <td>{{$student->document}}</td>
-              <td>{{$student->email}}</td>
+            <form action="{{route('asignatures.index')}}" method="get">
+              <td>{{$asignature->id}}</td>
+              <td>{{$asignature->name}}</td>
             </form>
                 <td>
-                    <a href="{{route('students.edit',$student->id)}}" class="btn btn-primary">Editar</a>
-                    <form action="{{route('students.destroy',$student->id)}}" method="post">
+                    <a href="{{route('asignatures.edit',$asignature->id)}}" class="btn btn-primary">Editar</a>
+                    <form action="{{route('asignatures.destroy',$asignature->id)}}" method="post">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -41,16 +36,10 @@
             </tr>
         </tbody>
     </table>
-    <form action="{{route('students.store')}}" method="post">
+    <form action="{{route('asignatures.store')}}" method="post">
       @csrf
       <label for="name" class="form-label">Nombre: 
-        <input type="text" class="form-control" name="nombre" id="name">
-      </label>
-      <label for="document" class="form-label">Documento
-        <input type="number" class="form-control" name="documento" id="document">
-      </label>
-      <label for="email" class="form-label">Correo Electrónico
-        <input type="email" class="form-control" name="correo" id="email">
+        <input type="text" class="form-control" name="nombreMateria" id="name">
       </label>
       <button type="submit" class="btn btn-success">Insertar</button>
     </form>
