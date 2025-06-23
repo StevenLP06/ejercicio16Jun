@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Asignature extends Model
 {
     use HasFactory;
+
+    # Una asignatura tiene una nota
+    public function asignatures()
+    {
+        return $this->belongsTo(Notes::class);
+    }
 }
