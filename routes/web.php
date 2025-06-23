@@ -22,6 +22,14 @@ Route::post('/notes', [NoteController::class, 'store'])->name('notes.store');
 Route::get('/notes/{id}', [NoteController::class, 'edit'])->name('notes.edit');
 Route::put('/notes/{id}', [NoteController::class, 'update'])->name('notes.update');
 Route::delete('/notes/{id}', [NoteController::class, 'destroy'])->name('notes.destroy');
+
+# Crea el sistema de rutas para Login, Registro... 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'role:administrador'])->group(function(){
+    Route::get('/admin', function(){
+        return view('home');
+    })->middleware('role');
+});
